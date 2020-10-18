@@ -1,0 +1,137 @@
+
+
+
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>CHECK LIST</title>
+    
+    
+    
+    
+        <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      body {
+  background: rgb(204,204,204); 
+}
+page {
+  background: white;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+page[size="A4"] {  
+  width: 21cm;
+  height: 29.7cm; 
+}
+page[size="A4"][layout="portrait"] {
+  width: 29.7cm;
+  height: 21cm;  
+}
+
+@media print {
+  body, page {
+    margin: 0;
+    box-shadow: 0;
+  }
+}
+    </style>
+        <script src="js/prefixfree.min.js"></script>
+
+ <!---STYLE DA TABELA --->
+<style>
+table {
+	
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 250px;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 2px;
+}
+
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 7px;
+}
+
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+ 
+  </head>
+
+  <body>
+
+    <page size="A4">
+	
+	<img src ="../../imagens/logoA4.gif" style =" width:770px; height:70px;">
+	
+	<table align="center";
+  <tr>
+	<td>DATA</td>
+	 <td><?PHP $data?></td>
+	 <td>MANIFESTO</td>
+	 <td>ECHO</td>
+   
+  </tr>
+  
+  <tr>
+    <td>PLACA</td>
+    <td>ECHO</td>
+	<td>CTE</td>
+	 <td>ECHO</td>
+
+  </tr>
+  <tr>
+    <td>ORIGEM</td>
+    <td>ECHO</td>
+	<td>GUIA GNRE</td>
+    <td>ECHO</td>
+  </tr>
+  <tr>
+    <td>DESTINO</td>
+    <td>ECHO</td>
+	<td>PAG\GNRE</td>
+    <td>ECHO</td>
+  
+  </tr>
+  
+    <td>CTRB</td>
+    <td>ECHO</td>
+	<td>MOTORISTA</td>
+    <td>ECHO</td>
+  
+  </tr>
+  
+  
+</table>
+	
+	
+	</page>
+	
+	
+	
+	
+	
+	<page size="A4"></page>
+
+
+
+
+
+
+    
+    
+    
+    
+  </body>
+</html>

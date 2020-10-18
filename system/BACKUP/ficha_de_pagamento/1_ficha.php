@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" type="text/css" href="CSS/style_ficha_pag.css">
+       
+        <meta charset="UTF-8">
+     
+    </head>
+    <body>
+        <div id="principal">
+            <form action="system/ficha_de_pagamento/gera_ficha_1.php" method="post" class="form-inline">
+
+                <div id="tabela1">
+                    <fieldset><!--fieldset-linha do formulario-->
+                        <legend>Ficha 1</legend>
+                    </fieldset><!--fieldset-linha do formulario-->	
+                    <div id="painel_form1" class="well well-lg">
+                        <div  id="form-group" class="form-group" >
+
+                            <input style="width:200px; font-size: 13px; " type="text" name="N_contrato"  required class="form-control" placeholder="NUMERO DO CONTRATO" />
+                            <input style="width:155px;font-size: 13px" type="text" name="ano_inscricao"  required class="form-control" placeholder="ANO DA INSCRIÇÃO "/>
+                            <input style="width:260px;font-size: 13px" type="text" name="titular"  required class="form-control to-uppercase" placeholder="NOME DO TITULAR"/>
+                            <input style="width:100px;font-size: 13px" type="text" name="ano_inicial"  required class="form-control" placeholder="ANO INICIAL"/>
+                            <input style="width:100px;font-size: 13px" type="text" name="ano_final"  required class="form-control" placeholder="ANO FINAL"/>
+                            <!--inicio do seletor-->	
+                            <select name="mes_inicial" required class="form-control">
+                                <option value="">MES INICIAL</option>
+                                <option value="JANEIRO">JANEIRO</option>
+                                <option value="FEVEREIRO">FEVEREIRO</option>
+                                <option value="MARÇO">MARÇO</option>
+                                <option value="ABRIL">ABRIL</option>
+                                <option value="MAIO">MAIO</option>
+                                <option value="JUNHO">JUNHO</option>
+                                <option value="JULHO">JULHO</option>
+                                <option value="AGOSTO">AGOSTO</option>
+                                <option value="SETEMBRO">SETEMBRO</option>
+                                <option value="OUTUBRO">OUTUBRO</option>
+                                <option value="NOVEMBRO">NOVEMBRO</option>
+                                <option value="DEZEMBRO">DEZEMBRO</option>
+                            </select>	 
+                            <!--fim do seletor-->
+                            <input style="width:170px; font-size: 13px" type="text" name="n_parcela"  required class="form-control" placeholder="NÚMERO DA PARCELA"/>
+                            <input style="width:170px;font-size: 13px" type="text" name="v_parcela"  required class="form-control money" placeholder="VALOR DA PARCELA"/>
+
+
+                        </div>	
+                    </div>	
+                    <button type="submit" name="gerar_ficha" class="btn btn-primary">GERAR FICHA</button>
+                </div>
+            </form>	
+        </div>
+
+    </body>
+</html>

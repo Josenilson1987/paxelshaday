@@ -1,0 +1,96 @@
+
+.tabela1{
+    margin-left: 10px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 20cm;
+}  
+
+
+.tabela1 td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 3px;
+}
+
+.tabela1 th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 7px;
+}
+
+
+.tabela1 tr:nth-child(even) {
+    /*                background-color: #dddddd;*/
+}   
+
+
+
+
+.tabela2{
+    margin-left: 5px;
+    text-align: center;
+    font-family: arial, sans-serif;
+    color: white;
+    border-collapse: collapse;
+    width: 20.6cm;
+    border: 1px solid #dddddd;
+    background-color: #000;
+    
+    
+}
+
+.tabela2 td{
+    width: 50%;
+}
+
+.tabela3{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 20cm;
+}
+
+.tabela3 td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 2px;
+}
+
+.tabela3 th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 7px;
+}
+
+
+.tabela tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.tabela4{
+    
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 20cm; 
+    
+}
+
+
+.tabela4 td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 28px;
+}
+
+.tabela4 th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 7px;
+}
+
+
+.tabela tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+

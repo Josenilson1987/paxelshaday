@@ -1,0 +1,31 @@
+/*CONFIRAÇÕES DA PAGINA A4*/
+#A4{margin-top: 21px;margin-left: 3px; width: 30cm;height: 20cm;float:left;sbackground-color: currentColor;border:solid #000 1px;}
+
+
+
+/*CONFIGURAÇÃO DA FICHA DO LADO SUPERIR ESQUERDO*/
+#ficha{margin-top: 10px;margin-left: 20px;width: 510px;height: 359px;float:left;sbackground-color: currentColor;border:solid #000 1px;}
+/*CONFIGURAÇÃO DA FICHA DO LADO SUPERIR DIREITO*/
+#ficha2{margin-top: 10px;margin-left: 13px; width: 510px;height: 359px;float:left;sbackground-color: currentColor;border:solid #000 1px;}
+/*CONFIGURAÇÃO DA FICHA DO LADO INFERIOR ESQUESO*/
+#ficha3{margin-top: 10px;margin-left: 20px; width: 510px;height: 359px;float:left;sbackground-color: currentColor;border:solid #000 1px;}
+/*CONFIGURAÇÃO DA FICHA DO LADO INFERIOR DIREITO*/
+#ficha4{margin-top: 10px;margin-left: 13px; width: 510px;height: 359px;float:left;sbackground-color: currentColor;border:solid #000 1px;}
+
+/*CONFIRAÇÕES GERAIS PARA TODAS AS FICHAS TODOS OS TOPOS H2, H3 , Q1, Q2, Q3, Q4 */
+/*AO ALTERAR AS CONFIGURAÇÕES ABAIXO APLICARA EM TODAS AS FICHAS POIS SÃO IGUAIS NO REQUISITO TOPO*/
+#topo img {max-width: 450px; margin-left: 10px; margin-top: 5px;}
+#topo{margin-top: 10px; margin-left: 4px; width: 500px; height: 70px; float:left; sbackground-color: currentColor; border:solid #000 1px;}
+#topo h2{margin-left: 4px;margin-top: 1px;font-size: 13px; text-align: center}
+#topo h3{margin-top: -30px;margin-left: 10px;font-size: 12px;}
+#q1{margin-top: 10px;margin-left: 9px;width: 3cm;height: 70px;float:left;border:solid #000 1px;}
+#q1 h3 {margin-top: 1px; font-size: 13px;} 
+#q2{margin-top: -10px;margin-left: 2px; width: 40px;height: 20px;float:left;border:solid #000 1px;}
+#q3{margin-top: -10px;margin-right: 5px; width: 60px;height: 20px;float:right;border:solid #000 1px;}
+#q4{margin-top: 3px;margin-right: 4px; width: 105px;height: 20px;float:right;border:solid #000 1px;}
+
+/*SEPARADORE DAS TAVELAS */
+#separador{margin-top: 40px; width: 3cm;height: 70px;/*    border:solid #000 1px;    */}
+
+
+.to-uppercase{text-transform: uppercase}

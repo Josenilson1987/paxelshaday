@@ -1,0 +1,85 @@
+#A4{
+margin-top: 10px;
+margin-left: 3px; 
+width: 30cm;
+height: 20cm;
+float:left;
+sbackground-color: currentColor;
+border:solid #000 1px;
+	}
+#ficha2{
+margin-top: 10px;
+margin-left: 35px; 
+width: 510px;
+height: 359px;
+float:left;
+sbackground-color: currentColor;
+border:solid #000 1px;
+	}
+
+#topo{
+margin-top: 10px;
+margin-left: 4px;
+width: 500px;
+height: 2cm;
+float:left;
+sbackground-color: currentColor;
+border:solid #000 1px;
+}
+
+
+#topo h2{
+margin-left: 4px;	
+margin-top: -3px;
+font-size: 13px;
+}
+
+#topo h3{
+margin-top: -15px;
+margin-left: 10px;	
+font-size: 15px;
+}
+
+#q1	{
+margin-top: 10px;
+margin-left: 9px; 
+width: 3cm;
+height: 70px;
+float:left;
+border:solid #000 1px;
+	}
+
+#q1 h3 {
+margin-top: 1px; 
+font-size: 13px;
+
+} 
+
+#q2	{
+margin-top: -10px;
+margin-left: 2px; 
+width: 40px;
+height: 20px;
+float:left;
+border:solid #000 1px;
+	}
+
+#q3	{
+margin-top: -10px;
+margin-right: 5px; 
+width: 60px;
+height: 20px;
+float:right;
+border:solid #000 1px;
+	}
+
+#q4	{
+margin-top: 3px;
+margin-right: 4px; 
+width: 105px;
+height: 20px;
+float:right;
+border:solid #000 1px;
+	}
+
+

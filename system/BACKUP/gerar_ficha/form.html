@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <div class="content form_create">
+            <article>
+
+                <div class="well well-lg Form_cliente form-inline content form_create  " >
+
+                    <form class="uppercase" name="Formcliente" action="" method="post" id="Formcliente" >
+
+                        <div class="well well-lg form-inline">
+
+
+                            <label>Nome Titular:</label>
+                            <input style="width:260px; font-size: 13px;" type="text" name="titular_nome"  class="form-control to-uppercase" value="<?php if (isset($data)) echo $data['titular_nome']; ?>" readonly/>
+                            <label>Cpf Titular:</label>
+                            <input style="width:200px; font-size: 13px; " type="text" name="cpf"  class="form-control" value="<?php if (isset($data)) echo $data['cpf']; ?>" readonly/>
+                            <label>Nº Contrato:</label>
+                            <input style="width:90px; font-size: 13px; " type="text" name="n_contrato"  class="form-control" value="<?php if (isset($data)) echo $data['n_contrato']; ?>" readonly/>
+                            <label>Ano da Inscrição:</label>
+                            <input style="width:155px;font-size: 13px" type="text" name="ano_inscricao"  required class="form-control" value="<?php if (isset($data)) echo$data['ano_inscricao']; ?>" readonly/>
+                            <label>Ano inicial:</label>
+                            <input style="width:100px;font-size: 13px" type="text" name="ano_inicial"  required class="form-control" value="<?php if (isset($data)) echo $data['ano_inicial']; ?>" readonly/>
+                            <label>Ano Final:</label>
+                            <input style="width:100px;font-size: 13px" type="text" name="ano_final"  required class="form-control" value="<?php if (isset($data)) echo $data['ano_final'] + 1; ?>" readonly/>
+                            <!--inicio do seletor-->	
+                            <label>Mes:</label>
+                            <select  required name="mes_inicial" class="form-control to-uppercase" value="" readonly>
+
+                                <option value=""> tipo_de_urna </option>
+                                <?php
+                                $ReadSes = new Read;
+                                $ReadSes->ExeRead("meses_ano");
+
+                                if (!$ReadSes->getResult()):
+
+                                else:
+                                    foreach ($ReadSes->getResult() as $ses):
+                                        echo" <option value=\"{$ses['meses']}\" ";
+
+                                        if ($ses['meses'] == $data['mes_inicial']):
+                                            echo ' selected="selected" ';
+                                        endif;
+
+                                        echo "> {$ses['meses']} </option>";
+                                    endforeach;
+                                endif;
+                                ?>
+                            </select> 
+                            <!--fim do seletor-->
+                            <label>Parcelas:</label>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_01']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_02']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_03']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_04']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_05']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_06']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_07']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_08']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_09']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_10']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_11']; ?>" readonly/>
+                            <input style="width:40px; font-size: 13px" type="text" name="parcela_01"   class="form-control" value="<?php if (isset($data)) echo $data['parcela_12']; ?>" readonly/>
+
+
+                            <label>Valor da Parcela:</label>
+                            <input style="width:100px; font-size: 13px" type="text" name="valor_parcela"   class="form-control" value="<?php if (isset($data)) echo $data['valor_parcela']; ?>" readonly/>
+
+                            <label>Data atual:</label>
+                            <input  required class="form-control to-uppercase"  style="width: 150px;" type="date" name="data_nascimento"  value="<?php if (isset($data)) echo $data['data_cadastrada']; ?>" readonly>
+
+
+                            <input style="width:170px; font-size: 13px" type="hidden" name="numero_ficha"   class="form-control" value="<?php if (isset($numero_ficha)) echo $numero_ficha; ?>" readonly/>
+
+
+
+                        </div>	
+                        <input type="submit" class="btn btn-primary" value="Gerar Nova Ficha" name="SendPostForm"/>
+                    </form>
+
+
+            </article>
+        </div>
+    </body>
+</html>

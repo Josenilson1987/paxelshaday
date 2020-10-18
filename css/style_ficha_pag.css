@@ -1,0 +1,55 @@
+
+#principal{
+margin-top: 10px;
+margin-left: 10px;
+width: 940px;
+height:400px;
+float:left;
+sbackground-color: currentColor;
+sborder:solid #000 1px;
+	
+}
+
+#tabela1{
+margin-top: -24px;
+margin-left: 10px;
+width: 450px;
+height:244px;
+float:left;
+sbackground-color: currentColor;
+sborder:solid #000 1px;
+	
+}
+
+#tabela2{
+margin-top: -24px;
+margin-left: 10px;
+width: 450px;
+height:244px;
+float:right;
+sbackground-color: currentColor;
+sborder:solid #000 1px;
+	
+}
+
+#tabela3{
+margin-top: 10px;
+margin-left: 10px;
+width: 450px;
+height:244px;
+float:left;
+sbackground-color: currentColor;
+sborder:solid #000 1px;
+	
+}
+
+#tabela4{
+margin-top: 10px;
+margin-left: 10px;
+width: 450px;
+height:244px;
+float:right;
+sbackground-color: currentColor;
+sborder:solid #000 1px;
+	
+}
