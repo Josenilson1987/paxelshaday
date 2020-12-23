@@ -177,7 +177,7 @@ endif;
 
                     </ul></div>
             </li>
-            <li><a href="" onclick="ocultardiv()" > <span>IMPRIMIR</span></a></li>
+         
             <li><a href="painel.php?logoff=true" class=""><span>SAIR</span></a></li>
             
 

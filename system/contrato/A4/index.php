@@ -118,7 +118,12 @@ endif;
          <input type=button  id="imprimir"  onclick="ocultardiv()">
        </div>
     <page size="A4">
-
+            <!-- Barra com o botão imprimir -->
+            <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+            <button class="btn btn-outline-success my-2 my-sm-0"  onclick="ocultardiv()" type="submit">IMPRIMIR</button>
+            </a>
+            </nav>
         <div class="caixa_de_texto">
 
         <div class="banner"> 

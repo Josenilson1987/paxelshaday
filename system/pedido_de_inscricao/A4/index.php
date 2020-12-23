@@ -37,12 +37,14 @@ endif;
             page {
                 background: white;
                 display: block;
-                margin: 0 auto;
-                margin-bottom: 0.5cm;
-                box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
-                font-size: 10px;
-                border:solid #000 3px;
-                margin-top: -60px;
+                /* margin: 0 auto; */
+                margin-bottom: 0.5cm; 
+                margin-top: -60px; 
+                /* box-shadow: 0 0 0.5cm rgba(0,0,0,0.8); */
+                font-size:15px;
+                /* border:solid #000 2px; */
+                box-sizing: border-box;
+                padding: 40px;
 
             }
 
@@ -52,20 +54,38 @@ endif;
 
             }
             page[size="A4"] {  
-                width: 21cm;
-                height: 29.7cm; 
+                width: 100%;
+                /* height: 29.7cm;  */
+                
+
             }
             page[size="A4"][layout="portrait"] {
-                width: 29.7cm;
-                height: 21cm;  
+                width: 100%;
+                /* height: 21cm;   */
             }
+
+            .caixa_de_texto{ 
+                padding: 10px 5px 10px 5px; 
+
+                margin: 10px 10px 10px 5px; 
+
+                width: 100%; 
+
+                height: 100px; 
+
+            }
+
 
             @media print {
                 body, page {
                     margin: 0;
                     box-shadow: 0;
+                    .ocultabotao {
+                        display: none;
+                    }
                 }
             }
+
         </style>
 
         <!--ESTILO DESTINADO A FOLHA A4 DA PAGINA -->
@@ -98,7 +118,7 @@ endif;
     <page size="A4">
 
         <br>
-        <img src ="images/Figura1.JPG" style =" width:770px; height:50px;">
+        <img src ="imagens/Figura1.JPG" style =" width:970px; height:160px;">
 
         <H4 ALIGN="left"><FONT FACE="Tahoma" SIZE="2" COLOR="BLACK"> Contribuinte: <?= strtoupper($ReadTitular["titular_nome"]) ?></FONT></H4>    
         <H4 ALIGN="left"><FONT FACE="Tahoma" SIZE="2" COLOR="BLACK">Residência  <?= strtoupper($ReadTitular["endereco"]) ?>  Nº   <?= strtoupper($ReadTitular["n_endereco"]) ?></FONT></H4>    
