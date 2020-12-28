@@ -1,96 +1,67 @@
+/* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+.banner { 
+    width: 100%;
+    padding: 0px;
+    margin-right: 200px;
+}
 
-.tabela1{
-    margin-left: 10px;
-    font-family: arial, sans-serif;
+body {
+    background: rgb(204,204,204); 
+}
+page {
+    background: white;
+    display: block;
+    /* margin: 0 auto; */
+    margin-bottom: 0.5cm; 
+    margin-top: -60px; 
+    /* box-shadow: 0 0 0.5cm rgba(0,0,0,0.8); */
+    font-size:15px;
+    /* border:solid #000 2px; */
+    box-sizing: border-box;
+    padding: 40px;
+}
+
+
+page[size="A4"] {  
+    width: 100%;
+    /* height: 29.7cm;  */   
+}
+page[size="A4"][layout="portrait"] {
+    width: 100%;
+    /* height: 21cm;   */
+}
+
+.caixa_de_texto{ 
+    padding: 10px 5px 10px 5px; 
+    margin: 10px 10px 10px 5px; 
+    width: 100%; 
+    height: 100px; 
+}
+
+
+@media print {
+    body, page {
+        margin: 0;
+        box-shadow: 0;
+        
+    }
+}
+
+.ocultabotao {
+    display: none;
+}
+/*ESTILO ACIMA DESTINADO A FOLHA A4 DA PAGINA*/ 
+
+.tabela_inscricao {
     border-collapse: collapse;
-    width: 20cm;
-}  
-
-
-.tabela1 td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 3px;
+    width: 100%;
 }
 
-.tabela1 th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 7px;
+.tabela_inscricao, td{
+    height: 30px;
 }
-
-
-.tabela1 tr:nth-child(even) {
-    /*                background-color: #dddddd;*/
-}   
-
-
-
-
-.tabela2{
-    margin-left: 5px;
-    text-align: center;
-    font-family: arial, sans-serif;
-    color: white;
-    border-collapse: collapse;
-    width: 20.6cm;
-    border: 1px solid #dddddd;
-    background-color: #000;
-    
-    
-}
-
-.tabela2 td{
-    width: 50%;
-}
-
-.tabela3{
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 20cm;
-}
-
-.tabela3 td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 2px;
-}
-
-.tabela3 th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 7px;
-}
-
-
-.tabela tr:nth-child(even) {
-    background-color: #dddddd;
-}
-
-.tabela4{
-    
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 20cm; 
-    
-}
-
-
-.tabela4 td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 28px;
-}
-
-.tabela4 th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 7px;
-}
-
-
-.tabela tr:nth-child(even) {
-    background-color: #dddddd;
+.tabela_inscricao, th, td {
+    border: 1px solid black;
 }
 
 
