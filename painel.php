@@ -221,35 +221,7 @@ endif;
         <script src="__jsc/tiny_mce/tiny_mce.js"></script>
         <script src="__jsc/tiny_mce/plugins/tinybrowser/tb_tinymce.js.php"></script>
    
-        <script type="text/javascript">
-
-            var visibilidade = true; //Variável que vai manipular o botão Exibir/ocultar
-
-            function ocultardiv() { // Quando clicar no botão.
-
-                if (visibilidade) {//Se a variável visibilidade for igual a true, então...
-                    document.getElementById("menu").style.display = "none";//Ocultamos a div
-                    document.getElementById("botoes").style.display = "none";//Ocultamos a div
-                    //criar um redirecionamento apos criar a pagina para o inicio do sistema . 
-                    visibilidade = false;//alteramos o valor da variável para falso.
-                    window.print();
-
-            // DEVO CRIAR UMA CONDIÇÃO PARA QUE AO TERMINAR DE IMPRIMIR O DOCUMENTO 
-            //GERE UMA PERGUNTA SE DESEJA IMPRIMIR OUTRO CONTRATO OU NÃO . 
-                    setTimeout(function () {
-                    if (confirm('Deseja imprimir outro Pedido de Inscrição  ? \n Se SIM clique em OK Se NÃO clique em Cancelar')){
-                        location.href="painel.php?exe=index";
-                    
-                    }else
-                        
-                        window.location.href = "painel.php";
-                    
-                    }, 3000);
-                } else{
-                    
-                }
-            }
-</script>
+      
    
     </body>
 
