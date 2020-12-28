@@ -1,16 +1,15 @@
-
 <?php
 $cpf_titular = filter_input(INPUT_GET, 'cpf_titular', FILTER_DEFAULT);
 
 $ReadTitular = new read;
 $ReadTitular->ExeRead("clientes", "WHERE cpf_titular='$cpf_titular'");
 
+//var_dump($ReadTitular);
 
+if (!$ReadTitular->getResult()) :
 
-if (!$ReadTitular->getResult()):
-  
-else:
-    foreach ($ReadTitular->getResult() as $ReadTitular):
+else :
+    foreach ($ReadTitular->getResult() as $ReadTitular) :
 
     endforeach;
 endif;
@@ -18,151 +17,133 @@ endif;
 ?>
 
 <!DOCTYPE html>
-<html >
-    <head>
-        <meta charset="UTF-8">
+<html>
 
-        <link rel="stylesheet" href="css/pedido_de_inscricao.css" />
-        <script src="js/prefixfree.min.js"></script>
+<head>
+    <meta charset="UTF-8">
 
-        
-        
-        <!--ESTILO DESTINADO A FOLHA A4 DA PAGINA -->
-        <style>
-
-            /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
-            body {
-                background: rgb(204,204,204); 
-            }
-            page {
-                background: white;
-                display: block;
-                /* margin: 0 auto; */
-                margin-bottom: 0.5cm; 
-                margin-top: -60px; 
-                /* box-shadow: 0 0 0.5cm rgba(0,0,0,0.8); */
-                font-size:15px;
-                /* border:solid #000 2px; */
-                box-sizing: border-box;
-                padding: 40px;
-
-            }
-
-            h4{
-
-                align-left: 5px; 
-
-            }
-            page[size="A4"] {  
-                width: 100%;
-                /* height: 29.7cm;  */
-                
-
-            }
-            page[size="A4"][layout="portrait"] {
-                width: 100%;
-                /* height: 21cm;   */
-            }
-
-            .caixa_de_texto{ 
-                padding: 10px 5px 10px 5px; 
-
-                margin: 10px 10px 10px 5px; 
-
-                width: 100%; 
-
-                height: 100px; 
-
-            }
-
-
-            @media print {
-                body, page {
-                    margin: 0;
-                    box-shadow: 0;
-                    .ocultabotao {
-                        display: none;
-                    }
-                }
-            }
-
-        </style>
-
-        <!--ESTILO DESTINADO A FOLHA A4 DA PAGINA -->
+    <link rel="stylesheet" href="css/pedido_de_inscricao.css" />
+    <script src="js/prefixfree.min.js"></script>
 
 
 
-    </head>
 
-    <body>
-        
-        <?php 
-        
-        $valor_plano1 = '40,00';
-        $valor_plano2 = '70,00';
-        $valor_plano3 = '90,00';
-       
-        $porcentagem ;
-      
-     
-        if ($ReadTitular['valor_do_plano'] === $valor_plano1):
-            $porcentagem = '4%';
-        else:
-           $porcentagem = '6%'; 
-        endif;
-         
-        
-        ?>
 
-       
+</head>
+
+<body>
+
+    <?php
+
+    $valor_plano1 = '40,00';
+    $valor_plano2 = '70,00';
+    $valor_plano3 = '90,00';
+
+    $porcentagem;
+
+
+    if ($ReadTitular['valor_do_plano'] === $valor_plano1) :
+        $porcentagem = '4%';
+    else :
+        $porcentagem = '6%';
+    endif;
+
+
+    ?>
+
+
     <page size="A4">
 
+        <div id="botoes">
+            <button class="btn btn-outline-success my-2 my-sm-0" onclick="ocultardiv()" type="submit">IMPRIMIR</button>
+        </div>
         <br>
-        <img src ="imagens/Figura1.JPG" style =" width:970px; height:160px;">
 
-        <H4 ALIGN="left"><FONT FACE="Tahoma" SIZE="2" COLOR="BLACK"> Contribuinte: <?= strtoupper($ReadTitular["titular_nome"]) ?></FONT></H4>    
-        <H4 ALIGN="left"><FONT FACE="Tahoma" SIZE="2" COLOR="BLACK">Residência  <?= strtoupper($ReadTitular["endereco"]) ?>  Nº   <?= strtoupper($ReadTitular["n_endereco"]) ?></FONT></H4>    
-        <H4 ALIGN="left"><FONT FACE="Tahoma" SIZE="2" COLOR="BLACK">
-        Bairro: <?= strtoupper($ReadTitular["bairro"]) ?> 
-        Estado:
-       <?php
-        $readestado = new Read;
-        $readestado->ExeRead("app_estados");
+        <img src="imagens/Figura1.JPG" style=" width:970px; height:160px;">
 
-        if (!$readestado->getResult()):
+        <br><br>
 
-        else:
-            foreach ($readestado->getResult() as $readestado):
-                if ($ReadTitular["estado"] === $readestado["estado_id"]):
-                    echo $readestado["estado_uf"];
-                endif;
-            endforeach;
-        endif;
-        ?> 
-        
-        Cidade:
-        <?php
-        $readCidade = new Read;
-        $readCidade->ExeRead("app_cidades");
+        <table class="tabela_inscricao">
 
-        if (!$readCidade->getResult()):
 
-        else:
-            foreach ($readCidade->getResult() as $readCidade):
-                if ($ReadTitular["cidade"] === $readCidade["cidade_id"]):
-                    echo $readCidade["cidade_nome"];
-                endif;
-            endforeach;
-        endif;
-        ?>      
+            <tr>
+                <td>NOME DO TITULAR.</td>
+                <td> <?= strtoupper($ReadTitular["titular_nome"]) ?></td>
 
-        </FONT></H4>        
-        <H4 ALIGN="left"><FONT FACE="Tahoma" SIZE="2" COLOR="BLACK">Telefone: <?= strtoupper($ReadTitular["telefone"]) ?> Naturalidade: <?= strtoupper($ReadTitular["naturalidade"]) ?> Entrada R$:  <?= $ReadTitular["valor_do_plano"] ?></FONT></H4>    
-        <H4 ALIGN="center"><FONT FACE="Tahoma" SIZE="2" COLOR="BLACK"></FONT></H4>    
-        <H4 ALIGN="center"><FONT FACE="Tahoma" SIZE="2" COLOR="BLACK"></FONT></H4>    
-        <H4 ALIGN="left"><FONT FACE="Tahoma" SIZE="2" COLOR="BLACK">mais (11) parcelas de R$: <?= $ReadTitular["valor_do_plano"] ?></FONT></H4>    
+                <td>TELEFONE:</td>
+                <td><?= $ReadTitular["telefone"] ?></td>
 
-        <table class="tabela1">
+            </tr>
+            <tr>
+                <td>ENDEREÇO:</td>
+                <td><?= strtoupper($ReadTitular["endereco"]) ?></td>
+                <td>CEP:</td>
+                <td><?= strtoupper($ReadTitular["cep"]) ?></td>
+
+            </tr>
+
+            <tr>
+                <td>BAIRRO:</td>
+                <td><?= strtoupper($ReadTitular["bairro"]) ?></td>
+                <td>ESTADO:</td>
+                <td>
+                    <?php
+                    $readestado = new Read;
+                    $readestado->ExeRead("app_estados");
+
+                    if (!$readestado->getResult()) :
+
+                    else :
+                        foreach ($readestado->getResult() as $readestado) :
+                            if ($ReadTitular["estado"] === $readestado["estado_id"]) :
+                                echo ($readestado["estado_uf"]);
+                            endif;
+                        endforeach;
+                    endif;
+                    ?>
+                </td>
+            </tr>
+
+            <tr>
+                <td>CIDADE:</td>
+                <td>
+                    <?php
+                    $readCidade = new Read;
+                    $readCidade->ExeRead("app_cidades");
+
+                    if (!$readCidade->getResult()) :
+
+                    else :
+                        foreach ($readCidade->getResult() as $readCidade) :
+                            if ($ReadTitular["cidade"] === $readCidade["cidade_id"]) :
+                                echo  $readCidade["cidade_nome"];
+                            endif;
+                        endforeach;
+                    endif;
+                    ?></td>
+                <td>NATURALIDADE:</td>
+                <td> <?= strtoupper($ReadTitular["naturalidade"]) ?></td>
+
+            </tr>
+
+
+
+            <tr>
+                <td>VALOR DA ENTRADA:</td>
+                <td> <?= $ReadTitular["valor_do_plano"] ?></td>
+                <td>mais (11) parcelas de R$:</td>
+                <td> <?= $ReadTitular["valor_do_plano"] ?></td>
+            </tr>
+
+
+
+
+        </table>
+
+
+        <br>
+
+        <table class="tabela_inscricao">
 
 
             <tr>
@@ -184,17 +165,33 @@ endif;
                 <td>Valor do plano: <?= $ReadTitular["valor_do_plano"] ?></td>
             </tr>
 
-           
+
 
         </table>
 
+        <p>
+            <H4 ALIGN="justify">
+                <FONT FACE="Arial" SIZE="3,0" COLOR="red"> Apos dois anos de contrato, passando se 24 meses a parir da data
+                    do primeiro vencimento, e não utilizados dos serviços funerais contratados, o contribuinte poderá anular
+                    o mesmo não tendo nenhuma custa, se durante este período os serviços forem utilizados, o contribuinte se
+                    responsabiliza a pagar o contrato ate o termino do prazo mínimo estipulado de 24 meses .Caso havendo
+                    interesse de continuar com o contrato apos a conclusão dos 24 meses o contribuinte pagara uma taxa de
+                    manutenção de <?= $porcentagem ?> ao ano em cima do salário mínimo vigente .</FONT>
+            </H4>
+        </p>
+        <p>
+            <H3 ALIGN="justify">
+                <FONT FACE="Arial" SIZE="2,9" COLOR="BLACK" class=""><b>Atenção: Caso o beneficiado sendo ele titular ou
+                        dependente, venha a óbito em um ambiente famíliar não sendo um hospítal e não tendo acompanhamento
+                        médico, o tramite legal sera acionar o IML Institulo Médico Legal,
+                        <FONT FACE="Arial" SIZE="2,9" COLOR="red" class=""> <b>a funeraria pax el shaday não forcnece atestado médico.</b></FONT>
+                    </b></FONT>
+            </H3>
+        </p>
 
-        <H4 ALIGN="justify"><FONT FACE="Arial" SIZE="1,7" COLOR="BLACK">Apos dois anos de contrato, passando se 24 meses a parir da data do primeiro vencimento,  e não utilizados dos serviços  funerais contratados, o contribuinte poderá anular o mesmo não tendo nenhuma custa, se durante este período os serviços forem utilizados, o contribuinte se responsabiliza a pagar o contrato ate o termino do prazo mínimo estipulado de 24 meses .Caso havendo interesse de continuar com o contrato apos a conclusão dos 24 meses o contribuinte pagara uma taxa de manutenção de <?= $porcentagem?> ao ano em cima do salário mínimo vigente .</FONT></H4>
-        <H3 ALIGN="justify"><FONT FACE="Arial" SIZE="2" COLOR="BLACK" class=""><b>Atenção: Caso o beneficiado sendo ele titular ou dependente, venha a óbito em um ambiente famíliar não sendo um hospítal e não tendo acompanhamento médico, o tramite legal sera acionar o IML a funeraria pax el shaday não forcnece atestado médico. </b></FONT></H3>
-
-        <table class="tabela2">   
-            <tr>
-                <td style="">BENEFICIÁRIOS E DEPENDENTES</td>
+        <table class="tabela_inscricao">
+            <tr style="background-color: aquamarine;">
+                <td style="text-align: center;"><b> BENEFICIÁRIOS E DEPENDENTES</b></td>
             </tr>
         </table>
 
@@ -202,18 +199,18 @@ endif;
 
             <thead>
 
-            <th>Nome:</th>
-            <th>RG:</th>
-            <th>CPF:</th>
-            <th>Data  Nascimento:</th>
-            <th>Grau De Parentesco:</th>
+                <th>Nome:</th>
+                <th>RG:</th>
+                <th>CPF:</th>
+                <th>Data Nascimento:</th>
+                <th>Grau De Parentesco:</th>
 
 
 
             </thead>
 
             <?php
-// REALIZA UMA CONSULTA NA TABELA DEPENDENTES E RETORNO O CPF DO TITULAR
+            // REALIZA UMA CONSULTA NA TABELA DEPENDENTES E RETORNO O CPF DO TITULAR
             extract($ReadTitular);
             $ReadTitular["cpf_titular"] = $cpf_titular;
 
@@ -223,12 +220,12 @@ endif;
 
 
 
-            if (!$listardependentes->getResult()):
+            if (!$listardependentes->getResult()) :
                 WSErro("Não exite dependentes cadastrados com este titular ", WS_INFOR);
-            else:
+            else :
 
-                foreach ($listardependentes->getResult() as $listardependentes):
-                    ?>                
+                foreach ($listardependentes->getResult() as $listardependentes) :
+            ?>
                     <tr class="to-uppercase">
 
                         <td><?= $listardependentes["dependentes_nome"]; ?></td>
@@ -240,9 +237,9 @@ endif;
 
 
 
-                    </tr> 
+                    </tr>
 
-                    <?php
+            <?php
                 endforeach;
             endif;
             ?>
@@ -250,61 +247,67 @@ endif;
 
         </table>
 
-        <H3 ALIGN="center"><FONT FACE="Tahoma" SIZE="2" COLOR="BLACK"> Vencimento da 1ª Prestação em: ____/____/_____</FONT></H3> 
-
-
-        <table class="tabela4">
+        <br>
+    <!------
+        <H3 ALIGN="right">
+            <FONT FACE="Tahoma" SIZE="2" COLOR="BLACK"> Vencimento da 1ª Prestação em: ____/____/_____</FONT>
+        </H3>
+    ------->        
+        <br><br>
+        <table class="tabela_inscricao">
 
 
             <tr>
-                <td>Assinatura do Titular:</td>
-                <td><p style="margin-left: 25px;">Data Atual</p></td>
-                <td>Responsável legal pela Pax el shaday:</td>
+                <td style="text-align: center; width: 35%;">Assinatura do Titular:</td>
+                <td>
+                    <p style="text-align: center;   ">Data Atual</p>
+                </td>
+                <td style="text-align: center; width: 35%;">Responsável legal pela Pax el shaday:</td>
 
             </tr>
 
 
             <tr>
-                <td>____________________</td>
-                <td>____/____/_____</td>
-                <td>________________________________</td>
+                <td></td>
+                <td style="text-align: center;">________/______/_______</td>
+                <td></td>
             </tr>
         </table>
-<!---
 
--->
-       
+
     </page>
-    
- <script type="text/javascript">
 
+    <script type="text/javascript">
         var visibilidade = true; //Variável que vai manipular o botão Exibir/ocultar
 
 
         function ocultardiv() { // Quando clicar no botão.
 
-            if (visibilidade) {//Se a variável visibilidade for igual a true, então...
-                document.getElementById("menu").style.display = "none";//Ocultamos a div
-                document.getElementById("botoes").style.display = "none";//Ocultamos a div
+            if (visibilidade) { //Se a variável visibilidade for igual a true, então...
+                document.getElementById("menu").style.display = "none"; //Ocultamos a div
+                document.getElementById("botoes").style.display = "none"; //Ocultamos a div
                 //criar um redirecionamento apos criar a pagina para o inicio do sistema . 
-                visibilidade = false;//alteramos o valor da variável para falso.
+                visibilidade = false; //alteramos o valor da variável para falso.
                 window.print();
 
-// DEVO CRIAR UMA CONDIÇÃO PARA QUE AO TERMINAR DE IMPRIMIR O DOCUMENTO 
-//GERE UMA PERGUNTA SE DESEJA IMPRIMIR OUTRO CONTRATO OU NÃO . 
-                 setTimeout(function () {
-                if (confirm('Deseja imprimir outro Pedido de Inscrição  ? \n Se SIM clique em OK Se NÃO clique em Cancelar')){
-                    location.href="painel.php?exe=pedido_de_inscricao/index";
-                  
-                }else
-                    
-                    window.location.href = "painel.php";
-                   
+                // DEVO CRIAR UMA CONDIÇÃO PARA QUE AO TERMINAR DE IMPRIMIR O DOCUMENTO 
+                //GERE UMA PERGUNTA SE DESEJA IMPRIMIR OUTRO CONTRATO OU NÃO . 
+                setTimeout(function() {
+                    if (confirm(
+                            'Deseja imprimir outro Pedido de Inscrição  ? \n Se SIM clique em OK Se NÃO clique em Cancelar'
+                        )) {
+                        location.href = "painel.php?exe=pedido_de_inscricao/index";
+
+                    } else
+
+                        window.location.href = "painel.php";
+
                 }, 3000);
-            } else{
-                
+            } else {
+
             }
         }
     </script>
 </body>
+
 </html>
