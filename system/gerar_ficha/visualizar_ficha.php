@@ -118,7 +118,7 @@ if ($mes_inicial == "$a") {
             <!--PRIMEIRA FICHA-->
             <div id="ficha">
                 <div id="topo">
-                    <img src="../../images/logoficha.JPG">
+                    <img src="../../imagens/logoficha.JPG">
                     <h2>CONT Nº <b> <?php echo "$N_contrato"; ?></b> Nº DA INSCRIÇÃO <b><?php echo "$ano_inscricao"; ?></b></h2>
                     <br>
                     <h3 class="to-uppercase">Titular: <b><?php echo "$titular"; ?></b> Periodo: <b><?php echo "$ano_inicial A $ano_final"; ?></b></h3>
