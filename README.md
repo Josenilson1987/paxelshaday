@@ -1,4 +1,4 @@
 # paxelshaday
-Sistema de gestão administrativa para funerária  criado  com regras de negócio  de uma pax funerária contendo.
+Sistema de gestão para o ramo de pax funerária, criado com regras de negócio  de uma  pax funerária o sistema contem os seguintes modulos.
 
-Cadastro de clientes , Dependestes, Cemiterios, cartorio,  gerador de fixa de pagamento, fixa de inscrição e contrato . 
+Cadastros: clientes, Dependestes, Cemiterios, cartorios,  o sistema gera os seguintes documentos, fixa de pagamento, carne de pagamento,  fixa de inscrição, contrato. 
