@@ -6,17 +6,6 @@ define('USER', 'root');
 define('PASS', '');
 define('DBSA','paxelshaday');
 
-//// CONFIGRAÇÕES DO BANCO ONLINE################
-//define('HOST', 'paxelshaday.mysql.dbaas.com.br');
-//define('USER', 'paxelshaday');
-//define('PASS', 'Aje102030');
-//define('DBSA','paxelshaday');
-
-// DEFINE SERVIDOR DE E-MAIL ##################
-define('MAILUSER', 'email@dominio.com.br');
-define('MAILPASS', 'senhadoemail');
-define('MAILPORT', 'postadeenvio');
-define('MAILHOST', 'servidordeenvio');
 
 
 
