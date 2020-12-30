@@ -92,7 +92,7 @@ endif;
             <b><input style="width:100px; font-size: 13px; color: red;" type="text" name="valor_parcela"   class="form-control money" value="<?php if (isset($listarficha)) echo $listarficha->getResult()[0]['valor_parcela']; ?>" /></b>
 
             <input type="submit" class="btn btn-primary" value="Atualizar" name="SendPostForm"/>
-            <input type="button" class="btn btn-default" value="Voltar" onClick="history.go(-1)">
+            <input type="button" class="btn btn-secondary" value="Voltar" onClick="history.go(-1)">
 
         </form>
     </td>   
