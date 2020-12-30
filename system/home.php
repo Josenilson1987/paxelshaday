@@ -24,19 +24,7 @@
 
         <h1 class="boxtitle">Publicações:</h1>
 
-        <section>
-            <h1 class="boxsubtitle">Aniversariantes do Mês:</h1>
-
-            <?php for ($i = 1; $i <= 2; $i++): ?>
-                <article<?php if ($i % 2 == 0) echo ' class="right"'; ?>>
-
-                    <div class="img thumb_small"></div>
-                   
-                    </ul>
-
-                </article>
-            <?php endfor; ?>
-        </section>          
+                 
 
 
                                
