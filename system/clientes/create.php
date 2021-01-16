@@ -329,8 +329,8 @@ endif;
               <option value="parreira">PARREIRA</option>
               <option value="varam">VARAM</option>
               <option value="varamzinho">VARAMZINHO</option>
-              <option value="alcadura">ALÇA DURA</option>
-              <option value="alacaparreira">ALÇA PAREIRA</option>
+              <option value="alçadura">ALÇA DURA</option>
+              <option value="alçaparreira">ALÇA PAREIRA</option>
             </select>
 
             <span class="input-group-text" id="basic-addon3">Tipo de Plano:</span>
