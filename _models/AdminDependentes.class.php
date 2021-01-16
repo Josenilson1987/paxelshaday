@@ -17,8 +17,8 @@ class AdminDependentes {
     const Entity = 'dependentes';
 
     /**
-     * <b>Cadastrar Jornada:</b> Envelope todos os campos, um array atribuitivo e execute esse método
-     * para cadastrar a Jornada. 
+     * <b>Cadastrar Dependete :</b> Envelope todos os campos, um array atribuitivo e execute esse método
+     * para cadastrar um Dependete. 
      * @param ARRAY $data = Atribuitivo
      */
     public function ExeCreate(array $data) {
@@ -95,13 +95,13 @@ class AdminDependentes {
     private function setData() {
         $this->Data = array_map('strip_tags', $this->Data);
         $this->Data = array_map('trim', $this->Data);
-        $this->Data['cpf_titular'] = Check::Name($this->Data['cpf_titular']);
-        $this->Data['lixeira'] = Check::Name($this->Data['lixeira']);
-        $this->Data['dependentes_nome'] = Check::Name($this->Data['dependentes_nome']);
-        $this->Data['rg'] = preg_replace("/[^\d]+/", "", $this->Data['rg']);
-        $this->Data['cpf_dep'] = Check::Name($this->Data['cpf_dep']);
-        $this->Data['data_nascimento'] = Check::Name($this->Data['data_nascimento']);
-        $this->Data['grau_de_parentesco'] = Check::Name($this->Data['grau_de_parentesco']);
+        $this->Data['titular_cpf'] = Check::Name($this->Data['titular_cpf']);
+        $this->Data['dependente_lixeira'] = Check::Name($this->Data['dependente_lixeira']);
+        $this->Data['dependente_nome'] = $this->Data['dependente_nome'];
+        $this->Data['dependente_rg'] = preg_replace("/[^\d]+/", "", $this->Data['dependente_rg']);
+        $this->Data['dependente_cpf'] = Check::Name($this->Data['dependente_cpf']);
+        $this->Data['dependente_data_nascimento'] = Check::Name($this->Data['dependente_data_nascimento']);
+        $this->Data['dependente_grau_de_parentesco'] = Check::Name($this->Data['dependente_grau_de_parentesco']);
        
         
         
@@ -124,7 +124,7 @@ class AdminDependentes {
         $Update->ExeUpdate(self::Entity, $this->Data, "WHERE dependentes_id = :dependentes_id", "dependentes_id={$this->dependentes_id}");
         if ($Update->getResult()):
             $this->Result = true;
-            $this->Error = ["<b>Sucesso:</b> O Dependente {$this->Data["dependentes_nome"]} foi atualizada no sistema!", WS_ACCEPT];
+            $this->Error = ["<b>Sucesso:</b> O Dependente {$this->Data["dependente_nome"]} foi atualizada no sistema!", WS_ACCEPT];
         endif;
     }
 
