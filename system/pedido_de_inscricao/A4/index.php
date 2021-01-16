@@ -216,7 +216,7 @@ endif;
 
             $listardependentes = new Read;
 
-            $listardependentes->ExeRead("dependentes", "WHERE cpf_titular='$cpf_titular'");
+            $listardependentes->ExeRead("dependentes", "WHERE titular_cpf='$cpf_titular'");
 
 
 
@@ -228,11 +228,11 @@ endif;
             ?>
                     <tr class="to-uppercase">
 
-                        <td><?= $listardependentes["dependentes_nome"]; ?></td>
-                        <td><?= $listardependentes["rg"]; ?></td>
-                        <td><?= $listardependentes["cpf_dep"]; ?></td>
-                        <td><?= $listardependentes["data_nascimento"]; ?></td>
-                        <td><?= $listardependentes["grau_de_parentesco"]; ?></td>
+                        <td><?= $listardependentes["dependente_nome"]; ?></td>
+                        <td><?= $listardependentes["dependente_rg"]; ?></td>
+                        <td><?= $listardependentes["dependente_cpf"]; ?></td>
+                        <td><?= $listardependentes["dependente_data_nascimento"]; ?></td>
+                        <td><?= $listardependentes["dependente_grau_de_parentesco"]; ?></td>
 
 
 
