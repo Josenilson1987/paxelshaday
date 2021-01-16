@@ -8,61 +8,49 @@ endif;
 
 $userlogin['empresa_cnpj'];
 
-
 $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
 
 if (!empty($data['SendPostForm'])):
 unset($data['SendPostForm']);
 
-$data["cpf_titular"] = str_replace([".", "-"], "", $data["cpf_titular"]); // 00000000000﻿
-$data["cpf_dep"] = str_replace([".", "-"], "", $data["cpf_dep"]); // 00000000000﻿
+$data["titular_cpf"] = str_replace([".", "-"], "", $data["titular_cpf"]); // 00000000000﻿
+$data["dependente_nome"] ;
+
 
 
 // REALIZA UMA CONSULTA NA TABELA TITULAR E RETORNO ATRAVÉS DO CPF O NOME DO TITULAR
-$cpf_titular = $data["cpf_titular"];
+$titular_cpf = $data["titular_cpf"];
 $verifica_cpf_titular = new Read;
-$verifica_cpf_titular->ExeRead("clientes", "WHERE cpf_titular='$cpf_titular'");
+$verifica_cpf_titular->ExeRead("clientes", "WHERE cpf_titular='$titular_cpf'");
 
 
-// REALIZA UMA CONSULTA NA TABELA DEPENDENTES E RETORNO O CPF VALIDO
-$cpf_dep = $data["cpf_dep"];
-$verifica_cpf_dep = new Read;
-$verifica_cpf_dep->ExeRead("dependentes", "WHERE cpf_dep='$cpf_dep'");
 
-//VERIFICA SE O CPF DO DEPENDENTE INFORMADO JÁ EXISTE COMO TITULAR .
-$valida_cpf_titular = new Read;
-$valida_cpf_titular->ExeRead("clientes", "WHERE cpf_titular='$cpf_dep'");
+// CONSULTA VERIFICA SE JÁ EXITE UM NOME NA TABELA DEPENDENTES
+$dependente_nome = $data["dependente_nome"];
+$verifica_dependente_nome = new Read;
+$verifica_dependente_nome->ExeRead("dependentes", "WHERE  dependente_nome='$dependente_nome'");
 
-
-    
 if (count($verifica_cpf_titular->getResult()) === 0):
- WSErro("O CPF  <b>Titular</b> informado não é valido, por favor informe um CPF valido .", WS_INFOR);   
+ WSErro("O CPF  do <b>Titular</b> informado não está cadastrado como titular, por favor informe um CPF valido .", WS_INFOR);   
  else:
   
 if ($verifica_cpf_titular->getResult()[0]['lixeira'] > 0):
 WSErro("Já existe um cadastro com o CPF: <b>Titular</b> informado,  porem o mesmo foi excluido, solicite ao administrador do sistema para restaurar o cadastro . ", WS_INFOR);
 
-elseif ($data["cpf_titular"] === $data["cpf_dep"]):
-WSErro("O CPF do <b>Dependente</b> não pode ser igual ao do <b>Titular</b>, Por favor informe um CPF <b>Dependente</b> diferente", WS_INFOR);
+elseif (($verifica_dependente_nome->getResult())):
 
-elseif (count($verifica_cpf_dep->getResult()) > 0):
-
-if ($verifica_cpf_dep->getResult()[0]['lixeira'] > 0):
-WSErro("Já existe um cadastro com o cpf <b>Dependente</b> informado,  porem o mesmo foi excluido, solicite ao administrador do sistema para restaurar o cadastro . ", WS_INFOR);
+if ($verifica_dependente_nome->getResult()[0]['dependente_lixeira'] > 0):
+WSErro("Já existe um cadastro com o cpf de <b>Dependente</b> informado,  porem o mesmo foi excluido, solicite ao administrador do sistema para restaurar o cadastro . ", WS_INFOR);
 else:
-header('Location: painel.php?exe=dependentes/update&update=true&dependentes_id=' . $verifica_cpf_dep->getResult()[0]['dependentes_id']);
+header('Location: painel.php?exe=dependentes/update&update=true&dependentes_id=' . $verifica_dependente_nome->getResult()[0]['dependentes_id']);
+
 endif;
 else:
-header('Location: painel.php?exe=dependentes/create&create=&cpf_titular=' . $data['cpf_titular'] .'&titular_nome=' . $verifica_cpf_titular->getResult()[0]['titular_nome']. '&cpf_dep=' . $data['cpf_dep'] .'&nome_dep='.$valida_cpf_titular->getResult()[0]['titular_nome']);
+header('Location: painel.php?exe=dependentes/create&create=&titular_cpf=' . $data['titular_cpf'] .'&titular_nome=' . $verifica_cpf_titular->getResult()[0]['titular_nome']. '&dependente_nome=' . $data['dependente_nome'] );
 endif;     
-     
- endif;
-
-
-
+    
 endif;
-
+endif;
 
 ?>
 <!DOCTYPE html>
@@ -102,8 +90,8 @@ endif;
                         <legend>Cadastrar  Dependentes
 
 
-                            <input  required class="form-control to-uppercase cpf   "  style="width: 220px;" type="text" name="cpf_titular" placeholder="DIGITE O CPF DO TITULAR" >
-                            <input  required  class="form-control to-uppercase cpf   "  style="width: 250px;" type="text" name="cpf_dep" placeholder="DIGITE O CPF DO DEPENDENTE" >
+                            <input  required class="form-control to-uppercase cpf   "  style="width: 220px;" type="text" name="titular_cpf" placeholder="DIGITE O CPF DO TITULAR" >
+                            <input  required  class="form-control to-uppercase   "  style="width: 320px;" type="text" name="dependente_nome" placeholder="DIGITE O NOME  DO DEPENDENTE" >
                         
                         
                         </legend>
