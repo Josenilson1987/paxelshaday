@@ -12,11 +12,10 @@ $userlogin['empresa_cnpj'];
 $dependentes_id = filter_input(INPUT_GET, 'dependentes_id', FILTER_VALIDATE_INT);
 $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-
-if (!empty($data['SendPostForm'])):
-    $data['lixeira'] = ($data['SendPostForm'] == 'Atualizar' ? '0' : '1' );
-    $data["cpf_titular"] = str_replace([".", "-"], "", $data["cpf_titular"]); // 00000000000﻿
-    $data["cpf_dep"] = str_replace([".", "-"], "", $data["cpf_dep"]); // 00000000000﻿
+if (!empty($data['SendPostForm'])) :
+    $data['dependente_lixeira'] = ($data['SendPostForm'] == 'Atualizar' ? '0' : '1');
+    $data["titular_cpf"] = str_replace([".", "-"], "", $data["titular_cpf"]); // 00000000000﻿
+    $data["dependente_cpf"] = str_replace([".", "-"], "", $data["dependente_cpf"]); // 00000000000﻿
     unset($data['SendPostForm']);
 
     require('_models/AdminDependentes.class.php');
@@ -26,120 +25,132 @@ if (!empty($data['SendPostForm'])):
     header("refresh: 5;painel.php");
 
     WSErro($cadastra->getError()[0], $cadastra->getError()[1]);
-else:
+else :
     $read = new Read;
     $read->ExeRead("dependentes", "WHERE dependentes_id = :id", "id={$dependentes_id}");
-    if (!$read->getResult()):
-//     header('Location: painel.php');
-    else:
+    if (!$read->getResult()) :
+
+    //     header('Location: painel.php');
+    else :
         $data = $read->getResult()[0];
+
     endif;
 endif;
 
 
 
 // REALIZA UMA CONSULTA NA TABELA TITULAR E RETORNO ATRAVÉS DO CPF O NOME DO TITULAR
-$cpf_titular = $data["cpf_titular"];
+$cpf_titular = $data["titular_cpf"];
 $verifica_cpf_titular = new Read;
 $verifica_cpf_titular->ExeRead("clientes", "WHERE cpf_titular='$cpf_titular'");
-foreach ($verifica_cpf_titular->getResult() as $NomeTitular):
-//    echo $NomeTitular["nome"];
+foreach ($verifica_cpf_titular->getResult() as $NomeTitular) :
+//echo $NomeTitular["titular_nome"];
 endforeach;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    </head>
+</head>
 
-    <body>
-        <div class="content form_create">
-            <article>
+<body>
+    <div class="content form_create">
+    
+                <form class="uppercase" name="Formcliente" action="" method="post" id="Formcliente">
 
-                <div class="well form-inline  " >
+                    
+                    <input type="hidden" name="dependente_lixeira" id="dependente_lixeira" value='<?= $data['lixeira'] ?>' />
+                    <input type="hidden" name="dependentes_id" id="dependentes_id" value='<?= $data['dependentes_id'] ?>' />
 
-                    <form class="uppercase" name="Formcliente" action="" method="post" id="Formcliente" >
+                    <h2> Atualizar Dependente </h2>
+                    <br>
 
-                        <input type="hidden" name="usuarios_empresa_cnpj" value='<?= $userlogin['empresa_cnpj'] ?>' />
-                        <input type="hidden" name="lixeira" id="lixeira" value='<?= $data['lixeira'] ?>' />
-                        <input type="hidden" name="dependentes_id"  id="dependentes_id" value='<?= $data['dependentes_id'] ?>' />
+                    <div class="input-group-prepend  ">
+                        <span class="input-group-text" id="basic-addon3">CPF TITULAR:</span>
+                        <input required class="form-control to-uppercase cpf   " style="width: 140px; display:disnable"
+                         type="text" name="titular_cpf" value="<?php if (isset($data)) {echo $data['titular_cpf'];} ?>">
+                         <span class="input-group-text to-uppercase" id="basic-addon3">NOME DO TITULAR:-  <b> <?= $NomeTitular["titular_nome"]; ?><b></span>
+                      
+                    </div>
+                    <br>
+                    <div class="input-group-prepend  ">
+                        <span class="input-group-text" id="basic-addon3">NOME DO DEPENDENTE:</span>
+                        <input required class="form-control to-uppercase" style="width: 360px;" type="text" 
+                    name="dependente_nome" value="<?php if (isset($data)) { echo $data['dependente_nome']; }  ?>">
+                    </div>
+                    <br>
 
-                        <label>Atualizar Dependente</label>
-                        <br>    
-                        <b>CPF/TITULAR:</b>
-                        <input  required class="form-control to-uppercase cpf   "  style="width: 140px; display:disnable" type="text" name="cpf_titular" value="<?phP if (isset($data)) {echo $data['cpf_titular'];}
-                        ?>" >
-
-                        <b class="to-uppercase">NOME/TITULAR: <?= $NomeTitular["titular_nome"]; ?></b>
-                         <br>
-                        <b>CPF DO DEPENDENTE:</b>
-                        <input  required class="form-control to-uppercase cpf   "  style="width: 150px; display:disnable" type="text" name="cpf_dep" value="<?php if (isset($data)) { echo $data['cpf_dep'];}
-                        ?>" readonly="true"  >
-                        <legend></legend>
-
-                        <span class="">Nome:</span>
-                        <br>
-                        <input  required class="form-control to-uppercase"  style="width: 260px;" type="text" name="dependentes_nome" value="<?php if (isset($data)) { echo $data['dependentes_nome'];}
-                        ?>">
-                        <span class="">RG:</span>
-                        <input   class="form-control to-uppercase rg "  style="width: 120px;" type="text" name="rg" value="<?php if (isset($data)) {echo $data['rg'];}
-                        ?>">                       
-
-                        <label>Data Nascimento</label>
-                        <input   class="form-control to-uppercase"  style="width: 180px;" type="date" name="data_nascimento"  value="<?php if (isset($data)) {echo $data['data_nascimento'];}
-                        ?>">
+                    <div class="input-group-prepend  ">
+                        <span class="input-group-text" id="basic-addon3">CPF DO DEPENDENTE:</span>
+                        <input required class="form-control to-uppercase cpf" style="width: 360px;" type="text" 
+                    name="dependente_cpf" value="<?php if (isset($data)) { echo $data['dependente_cpf']; }  ?>">
+                    </div>
+                    <br>
 
 
-                        <span class="">Parentesco:</span>
-                        <select class="form-control" name="grau_de_parentesco" >
-                            <?php
-                            $ReadSes = new Read;
-                            $ReadSes->ExeRead("grau_de_parentesco");
+                    <div class="input-group-prepend  ">
+                        <span class="input-group-text" id="basic-addon3">RG DO DEPENDENTE:</span>
+                        <input required class="form-control to-uppercase" style="width: 360px;" type="text" 
+                    name="dependente_rg" value="<?php if (isset($data)) { echo $data['dependente_rg']; }  ?>">
+                    </div>
+                    <br>
+                
 
-                            if (!$ReadSes->getResult()):
+                    <div class="input-group-prepend  ">
+                        <span class="input-group-text" id="basic-addon3">DATA DE NASCIMENTO:</span>
+                        <input class="form-control to-uppercase" style="width: 180px;" 
+                        type="date" name="dependente_data_nascimento" value="<?php if (isset($data)) { echo $data['dependente_data_nascimento'];}?>">
+                    
+                        <div class="input-group-prepend  ">
+                        <span class="input-group-text" id="basic-addon3">PARENTESCO:</span>
+                        <select class="form-control" name="dependente_grau_de_parentesco">
+                        <?php
+                        $ReadSes = new Read;
+                        $ReadSes->ExeRead("grau_de_parentesco");
 
-                            else:
-                                foreach ($ReadSes->getResult() as $ses):
-                                    echo" <option value=\"{$ses['grau_de_parentesco']}\" ";
+                        if (!$ReadSes->getResult()) :
 
-                                    if ($ses['grau_de_parentesco'] == $data['grau_de_parentesco']):
-                                        echo ' selected="selected" ';
-                                    endif;
+                        else :
+                            foreach ($ReadSes->getResult() as $ses) :
+                                echo " <option value=\"{$ses['grau_de_parentesco']}\" ";
 
-                                    echo "> {$ses['grau_de_parentesco']} </option>";
-                                endforeach;
-                            endif;
-                            ?>
-                        </select>
+                                if ($ses['grau_de_parentesco'] == $data['dependente_grau_de_parentesco']) :
+                                    echo ' selected="selected" ';
+                                endif;
 
+                                echo "> {$ses['grau_de_parentesco']} </option>";
+                            endforeach;
+                        endif;
+                        ?>
+                    </select>
 
+                    </div>
+
+                    </div>
+             
+                    <br>
+                                                                                                       
+                    <!--BOTOES-->
+                    <div id="botoes">
                        
+                        <a class="btn  btn-primary" href="javascript:window.history.go(-1)">Voltar a pagina anterior</a>
 
+                        <input type="submit" class="btn btn-warning" value="Atualizar" name="SendPostForm" />
+                        <input type="submit" class="btn btn-danger" value="Deletar" name="SendPostForm" onclick="return  confirm('Deseja mesmo deletar o cadastro ?');" />
+                        <a class="btn  btn-success" href="painel.php?exe=dependentes/index">Novo Dependente</a>
+                    </div>
+                    <!--BOTOES-->
+                </form>
 
-                        <!--BOTOES-->
-                        <div id="botoes">
-                             <br>
-                            <a class="btn  btn-primary"href="javascript:window.history.go(-1)">Voltar a pagina anterior</a>  
-                            
-                            <input type="submit" class="btn btn-warning" value="Atualizar" name="SendPostForm" />
-                            <input type="submit" class="btn btn-danger" value="Deletar" name="SendPostForm"  onclick="return  confirm('Deseja mesmo deletar o cadastro ?');"/>
-                             <a class="btn  btn-success"href="painel.php?exe=dependentes/index">Novo Dependente</a>  
-                        </div>
-                        <!--BOTOES-->
-                    </form>
+          
 
-                </div>
+    </div>
 
-
-
-            </article>
-        </div>
-
-    </body>
+</body>
 
 </html>
