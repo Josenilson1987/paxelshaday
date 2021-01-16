@@ -459,7 +459,7 @@ endif;
 
           $listardependentes = new Read;
 
-          $listardependentes->ExeRead("dependentes", "WHERE cpf_titular='$cpf_titular'");
+          $listardependentes->ExeRead("dependentes", "WHERE titular_cpf='$cpf_titular'");
 
 
 
@@ -471,11 +471,11 @@ endif;
           ?>
               <tr class="to-uppercase">
 
-                <td><?= $listardependentes["dependentes_nome"]; ?></td>
-                <td><?= $listardependentes["data_nascimento"]; ?></td>
-                <td><?= $listardependentes["grau_de_parentesco"]; ?></td>
+                <td><?= $listardependentes["dependente_nome"]; ?></td>
+                <td><?= $listardependentes["dependente_data_nascimento"]; ?></td>
+                <td><?= $listardependentes["dependente_grau_de_parentesco"]; ?></td>
 
-                <td> <a class="btn  btn-danger" href="painel.php?exe=dependentes/update&update=&cpf_titular<?= $data["cpf_titular"] ?>&nome_titular=<?= $data["titular_nome"] ?>&dependentes_id=<?= $listardependentes["dependentes_id"] ?>&dependentes_nome=<?= $listardependentes["dependentes_nome"] ?>" name="editar"> editar_dep</a></td>
+                <td> <a class="btn  btn-danger" href="painel.php?exe=dependentes/update&update=&cpf_titular<?= $data["cpf_titular"] ?>&nome_titular=<?= $data["titular_nome"] ?>&dependentes_id=<?= $listardependentes["dependentes_id"] ?>&dependente_nome=<?= $listardependentes["dependente_nome"] ?>" name="editar"> editar_dep</a></td>
 
 
               </tr>
